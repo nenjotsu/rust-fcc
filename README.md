@@ -195,3 +195,4 @@ fn main() {
 }
 ```
 The ampersand (`&`) indicates that the value is a reference. That is, `second_string` no longer takes ownership of `"freeCodeCamp"`, but, instead, points to the same point in memory as `first_string`.
+
