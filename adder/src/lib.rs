@@ -71,6 +71,7 @@ mod tests {
     #[test]
     #[should_panic]
     // #[should_panic("does not contain name, the value was {}")]
+    // #[ignore]
     fn greeting_fails() {
       let result = greeting_fail("Carol");
       assert!(result.contains("Carol"), "does not contain name, the value was {}", result);
