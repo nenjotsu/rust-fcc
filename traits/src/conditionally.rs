@@ -11,7 +11,7 @@ impl<T> Pair<T> {
   }
 }
 
-impl<T: Display + PatialOrd> Pair<T> {
+impl<T: Display + PartialOrd> Pair<T> {
   fn amp_display(&self) {
       if self.x >= self.y {
         println!("the largest member is x = {}", self.x);

@@ -1,5 +1,5 @@
 mod where_generics;
-mod condiionally;
+mod conditionally;
 mod blanket_impl;
 
 pub struct NewsArticle {
