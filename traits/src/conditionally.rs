@@ -1,16 +1,19 @@
 use std::fmt::Display;
 
+#[allow(dead_code)]
 struct Pair<T> {
   x: T,
   y: T
 }
 
+#[allow(dead_code)]
 impl<T> Pair<T> {
   fn new(x: T, y: T) -> Self {
     Self { x, y }
   }
 }
 
+#[allow(dead_code)]
 impl<T: Display + PartialOrd> Pair<T> {
   fn amp_display(&self) {
       if self.x >= self.y {

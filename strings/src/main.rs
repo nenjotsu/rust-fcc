@@ -1,5 +1,6 @@
 use unicode_segmentation::UnicodeSegmentation;
 
+#[allow(unused_variables)]
 fn main() {
     // Strings are stored as a colection of UTF-8 encoded bytes
     let s1 = String::new();

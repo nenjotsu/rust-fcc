@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 mod front_of_house {
   pub mod hosting {
     pub fn add_to_waitinglist() {}
@@ -28,6 +29,7 @@ pub fn eat_at_restaurant_foh() {
 
 fn serve_order() {}
 
+#[allow(dead_code)]
 mod back_of_house {
 
   fn fix_incorrect_order() {
@@ -57,6 +59,7 @@ mod back_of_house {
   }
 }
 
+#[allow(unused_variables)]
 pub fn eat_at_restaurant_boh() {
   let mut meal = back_of_house::Breakfast::summer("toast");
   meal.toast = String::from("wheat");
