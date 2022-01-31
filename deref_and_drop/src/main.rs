@@ -28,6 +28,7 @@ fn main() {
 
     let m = MyBox::new(String::from("Rsut"));
     hello(&m);
+    drop_trait();
 }
 
 // Rust does deref coercion when it finds types and trait implementations in three cases:
@@ -38,4 +39,26 @@ fn main() {
 // The first case states that if you have
 fn hello(name: &str) {
     println!("hello, {}", name);
+}
+
+// drop trait
+struct CustomSmartPointer {
+    data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("dropping with data {}", self.data);
+    }
+}
+
+fn drop_trait() {
+    let c = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let d = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
+    drop(c);
+    println!("created");
 }
