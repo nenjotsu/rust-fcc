@@ -1,5 +1,4 @@
 use add_one;
-user rand;
 
 fn main() {
     let num = 10;

@@ -15,19 +15,19 @@ fn refactor_using_iflet() {
     }
 }
 
-fn using_match() {
-    let mut count = 0;
-    match coin {
-        Coin::Quarter(state) => println!("state quarter from {:?}!", state),
-        _ => count += 1,
-    }
-}
+// fn using_match() {
+//     let mut count = 0;
+//     match coin {
+//         Coin::Quarter(state) => println!("state quarter from {:?}!", state),
+//         _ => count += 1,
+//     }
+// }
 
-fn using_if_let_else() {
-    let mut count = 0;
-    if let Coin::Quarter(state) = coin {
-        println!("state quarter from {:?}!", state);
-    } else {
-        count += 1;
-    }
-}
+// fn using_if_let_else() {
+//     let mut count = 0;
+//     if let Coin::Quarter(state) = coin {
+//         println!("state quarter from {:?}!", state);
+//     } else {
+//         count += 1;
+//     }
+// }
