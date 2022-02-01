@@ -7,6 +7,7 @@ enum List {
 
 use List::{Cons, Nil};
 
+#[allow(unused)]
 fn main() {
     let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
     println!("count after creating a = {}", Rc::strong_count(&a));

@@ -8,6 +8,7 @@ fn main() {
     message_passing_multiple_producers();
 }
 
+#[allow(dead_code)]
 fn closures_with_thread() {
     let v = vec![1, 2, 3];
     let handle = thread::spawn(move || {
@@ -16,6 +17,7 @@ fn closures_with_thread() {
     handle.join().unwrap();
 }
 
+#[allow(dead_code)]
 fn spawn_thread() {
     let handle = thread::spawn(|| {
         for i in 1..10 {
@@ -31,6 +33,7 @@ fn spawn_thread() {
     }
 }
 
+#[allow(dead_code)]
 fn message_passing() {
     let (tx, rx) = mpsc::channel();
 
@@ -43,6 +46,7 @@ fn message_passing() {
     println!("got {received}");
 }
 
+#[allow(dead_code)]
 fn message_passing_multiple_values() {
     let (tx, rx) = mpsc::channel();
     thread::spawn(move || {
