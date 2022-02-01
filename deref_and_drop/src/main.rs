@@ -52,6 +52,7 @@ impl Drop for CustomSmartPointer {
     }
 }
 
+#[allow(unused_variables)]
 fn drop_trait() {
     let c = CustomSmartPointer {
         data: String::from("my stuff"),
