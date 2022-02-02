@@ -1,14 +1,15 @@
-use trait_objects::Draw;
+use trait_objects::{Button, Draw, Screen};
 
+#[allow(dead_code)]
 struct SelectBox {
-    width: u32;
-    height: u32;
+    width: u32,
+    height: u32,
     options: Vec<String>,
 }
 
 impl Draw for SelectBox {
     fn draw(&self) {
-        unimplemented!() // TODO 
+        unimplemented!() // TODO
     }
 }
 
@@ -22,15 +23,15 @@ fn main() {
                     String::from("yes"),
                     String::from("no"),
                     String::from("maybe"),
-                ]
+                ],
             }),
             Box::new(Button {
                 width: 100,
                 height: 50,
-                label: String::from("ok")
-            })
-        ]
-    }
+                label: String::from("ok"),
+            }),
+        ],
+    };
 
     screen.run();
 }
