@@ -1,3 +1,5 @@
+#[allow(dead_code)]
+#[allow(unused_variables)]
 fn main() {
     // matching patterns
     enum Language {
@@ -66,6 +68,7 @@ fn print_coordinates(&(x, y): &(i32, i32)) {
     println!("current location: ({}, {})", x, y);
 }
 
+#[allow(unused_variables)]
 fn patterns() {
     // irrefutable
     let x = 5;
@@ -83,6 +86,7 @@ fn patterns() {
     refutable_sample();
 }
 
+#[allow(unused_variables)]
 fn refutable_sample() {
     let x: Option<&str> = None;
 
