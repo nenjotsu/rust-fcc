@@ -1,5 +1,6 @@
 // calling methods with the same name
 #![allow(unused_variables)]
+#![allow(dead_code)]
 trait Pilot {
     fn fly();
 }
