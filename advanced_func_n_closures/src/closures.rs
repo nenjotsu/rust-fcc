@@ -19,11 +19,11 @@ pub fn func_pointer_tuple() {
     println!("{:?}", list_of_statuses);
 }
 
-pub fn returns_closures(a: i32) -> Box<dyn Fn(i32) -> i32> {
-    // Box:new(move |b| a - b)
-    if a > 0 {
-        Box:new(move |b| a + b)
-    } else {
-        Box:new(move |b| a - b)
-    }
-}
+// pub fn returns_closures(a: i32) -> Box<dyn Fn(i32) -> i32> {
+//     // Box:new(move |b| a - b)
+//     if a > 0 {
+//         Box:new(move |b| a + b)
+//     } else {
+//         Box:new(move |b| a - b)
+//     }
+// }

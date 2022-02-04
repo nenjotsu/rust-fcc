@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 mod closures;
 
 fn add_one(x: i32) -> i32 {
@@ -29,5 +31,5 @@ fn func_pointer() {
 fn main() {
     closures::main();
     closures::func_pointer_tuple();
-    closures::returns_closures(11);
+    // closures::returns_closures(11);
 }
