@@ -7,6 +7,7 @@
 //
 // String -> &str (cheap -- AsRef)
 // &str -> String (expensive -- memcpy)
+mod lifetime_and_generics;
 
 #[derive(Debug)]
 pub struct StrSplit<'h, 'd> {

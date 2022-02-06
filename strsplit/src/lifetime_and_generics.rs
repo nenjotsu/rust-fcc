@@ -6,8 +6,8 @@ pub struct StrSplit<'h, D> {
     delimiter: D,
 }
 
-impl<'h, 'd> StrSplit<'h, 'd> {
-    pub fn new(haystack: &'h str, delimiter: &'d str) -> Self {
+impl<'h, D> StrSplit<'h, D> {
+    pub fn new(haystack: &'h str, delimiter: D) -> Self {
         Self {
             remainder: Some(haystack),
             delimiter,
@@ -15,16 +15,23 @@ impl<'h, 'd> StrSplit<'h, 'd> {
     }
 }
 
-impl<'h> Iterator for StrSplit<'h, '_> {
+pub trait Delimiter {
+    fn find_next(&self, s: &str) -> Option<(usize, usize)>;
+}
+
+impl<'h, D> Iterator for StrSplit<'h, D>
+where
+    D: Delimiter,
+{
     type Item = &'h str;
 
     // refactor
     fn next(&mut self) -> Option<Self::Item> {
         let remainder = self.remainder.as_mut()?;
 
-        if let Some(next_delim) = remainder.find(self.delimiter) {
-            let until_delimeter = &remainder[..next_delim];
-            *remainder = &remainder[(next_delim + self.delimiter.len())..];
+        if let Some((delim_start, delim_end)) = self.delimiter.find_next(remainder) {
+            let until_delimeter = &remainder[..delim_start];
+            *remainder = &remainder[delim_end..];
             Some(until_delimeter)
         } else {
             self.remainder.take()
@@ -32,16 +39,29 @@ impl<'h> Iterator for StrSplit<'h, '_> {
     }
 }
 
+impl Delimiter for &str {
+    fn find_next(&self, s: &str) -> Option<(usize, usize)> {
+        s.find(self).map(|start| (start, start + self.len()))
+    }
+}
+
+impl Delimiter for char {
+    fn find_next(&self, s: &str) -> Option<(usize, usize)> {
+        s.char_indices()
+            .find(|(_, c)| c == self)
+            .map(|(start, _)| (start, start + self.len_utf8()))
+    }
+}
+
 fn until_char(s: &str, c: char) -> &str {
-    let delim = format!("{}", c);
-    StrSplit::new(s, &delim)
+    StrSplit::new(s, c)
         .next()
         .expect("StrSplit always gives at least one result")
 }
 
 #[test]
 fn test_until_chart() {
-    assert_eq!(until_char("hello world", 'o'), "hell");
+    assert_eq!(until_char("hello world", 'w'), "hello ");
 }
 
 #[test]
