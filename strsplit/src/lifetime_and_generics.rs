@@ -1,17 +1,9 @@
-// #![warn(missing_debug_implementations, rust_2018_idioms, missing_docs)]
-
-// Note:
-// str === -> [char]
-// &str === ->  &[char] <--- stack allocated
-// String === -> Vec<char>  <--- heap allocated, dynamically expendable and contractable, shrink and grow
-//
-// String -> &str (cheap -- AsRef)
-// &str -> String (expensive -- memcpy)
+#![warn(missing_debug_implementations, rust_2018_idioms, missing_docs)]
 
 #[derive(Debug)]
-pub struct StrSplit<'h, 'd> {
+pub struct StrSplit<'h, D> {
     remainder: Option<&'h str>,
-    delimiter: &'d str,
+    delimiter: D,
 }
 
 impl<'h, 'd> StrSplit<'h, 'd> {
@@ -23,46 +15,17 @@ impl<'h, 'd> StrSplit<'h, 'd> {
     }
 }
 
-// '_ ignored
-impl<'h> Iterator for StrSplit<'h, '_>
-// where
-//     'd: 'h, // means, d is longer than h, or d implements h
-{
+impl<'h> Iterator for StrSplit<'h, '_> {
     type Item = &'h str;
-    // fn next_old(&mut self) -> Option<Self::Item> {
-    //     // this is the same as
-    //     // if let Some(remainder) = &mut self.remainder {
-    //     if let Some(ref mut remainder) = self.remainder {
-    //         if let Some(next_delim) = remainder.find(self.delimiter) {
-    //             let until_delimiter = &remainder[..next_delim];
-
-    //             // &mut &'a str = &'a str
-    //             *remainder = &remainder[(next_delim + self.delimiter.len())..];
-    //             Some(until_delimiter)
-    //         } else {
-    //             // take is, returning the Option<T>,
-    //             // if it's None it will return None
-    //             // or if it's Some it will replace the None what's in there,
-    //             // here it's empty string ""
-    //             // impl<T> Option<T> { fn take(&mut self) -> Option<T> }
-    //             self.remainder.take()
-    //         }
-    //     } else {
-    //         None
-    //     }
-    // }
 
     // refactor
     fn next(&mut self) -> Option<Self::Item> {
-        // let ref remainder = self.remainder.as_mut()?;
-        // same as
         let remainder = self.remainder.as_mut()?;
 
         if let Some(next_delim) = remainder.find(self.delimiter) {
             let until_delimeter = &remainder[..next_delim];
             *remainder = &remainder[(next_delim + self.delimiter.len())..];
             Some(until_delimeter)
-            // Some(self.delimiter)
         } else {
             self.remainder.take()
         }
