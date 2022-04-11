@@ -70,6 +70,7 @@ impl<'h> Iterator for StrSplit<'h, '_>
     }
 }
 
+#[allow(unused)]
 fn until_char(s: &str, c: char) -> &str {
     let delim = format!("{}", c);
     StrSplit::new(s, &delim)

@@ -1,4 +1,4 @@
-#![warn(missing_debug_implementations, rust_2018_idioms, missing_docs)]
+#![warn(missing_debug_implementations, missing_docs)]
 
 #[derive(Debug)]
 pub struct StrSplit<'h, D> {
@@ -53,6 +53,7 @@ impl Delimiter for char {
     }
 }
 
+#[allow(unused)]
 fn until_char(s: &str, c: char) -> &str {
     StrSplit::new(s, c)
         .next()
