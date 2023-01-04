@@ -16,8 +16,7 @@ impl Rectangle {
     }
 }
 
-/// Add two to the number given.
-///
+#[doc = "Add two to the number given."]
 /// # Examples
 ///
 /// ```
@@ -33,6 +32,7 @@ pub fn add_two(a: i32) -> i32 {
 pub fn greeting(name: &str) -> String {
     format!("Hello {}!", name)
 }
+
 #[allow(unused_variables)]
 pub fn greeting_fail(name: &str) -> String {
     format!("Hello!")
